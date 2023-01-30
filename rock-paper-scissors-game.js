@@ -25,9 +25,6 @@ function getComputerChoice (){
     return computerChoice;
 }
 
-let computerSelection = getComputerChoice;
-let playerSelection = playerEntry.toLowerCase();
-
 function playRound (playerSelection, computerSelection ){
     
     let playerWins = false;
@@ -59,18 +56,31 @@ function playRound (playerSelection, computerSelection ){
     }
 
     if(draw){
-        return `There is a draw! Both choose ${playerSelection} .`;
+        return `There is a draw! Both choose ${playerSelection}.`;
     }
     else {
         if(playerWins){
             return `Congratulations, you won! ${playerSelection} beats ${computerSelection}.`;
         }
         else{
-            return `You lose! ${computerSelection} beats ${playerSelection}.`
+            return `You lose! ${computerSelection} beats ${playerSelection}.`;
         }
     }
-
 }
 
-console.log("Hello World");
-console.log(getComputerChoice());
+function game(){
+
+    console.log("Let's play some Rock, Paper, Scissors!");
+
+    let score = 0;
+    for (let i = 0; i < 5; i++) {
+        console.log(`Round number ${i+1}.`);
+        let playerEntry = window.prompt(`What's your choice?`);
+        let playerSelection = playerEntry.toLowerCase();
+        let computerSelection = getComputerChoice();
+        console.log(computerSelection);
+        console.log(playRound (playerSelection, computerSelection ));
+     }
+
+}
+console.log(game());
