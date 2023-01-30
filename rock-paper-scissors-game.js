@@ -57,6 +57,19 @@ function playRound (playerSelection, computerSelection ){
                 break;
         }
     }
+
+    if(draw){
+        return `There is a draw! Both choose ${playerSelection} .`;
+    }
+    else {
+        if(playerWins){
+            return `Congratulations, you won! ${playerSelection} beats ${computerSelection}.`;
+        }
+        else{
+            return `You lose! ${computerSelection} beats ${playerSelection}.`
+        }
+    }
+
 }
 
 console.log("Hello World");
