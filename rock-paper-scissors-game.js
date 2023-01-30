@@ -7,20 +7,22 @@ function getRandomIntInclusive(min,max){
 
 function getComputerChoice (){
     let option= getRandomIntInclusive(1,3);
-    console.log(option);
+    // console.log(option);
     let computerChoice;
     switch(option){
         case 1:
             computerChoice="rock";
-            console.log("1");
+            // console.log("1");
             break;
         case 2:
             computerChoice="paper";
-            console.log("2");
+            // console.log("2");
             break;
         case 3:
             computerChoice="scissors";
-            console.log("3");
+            // console.log("3");
+        
+        // default:
     }
     return computerChoice;
 }
@@ -54,17 +56,16 @@ function playRound (playerSelection, computerSelection ){
                 break;
         }
     }
-
     if(draw){
-        return `There is a draw! Both choose ${playerSelection}.`;
+        return "draw";
     }
     else {
         if(playerWins){
-            return `Congratulations, you won! ${playerSelection} beats ${computerSelection}.`;
-        }
-        else{
-            return `You lose! ${computerSelection} beats ${playerSelection}.`;
-        }
+            return "playerWins";
+         }
+         else{
+            return "playerLose";
+         }
     }
 }
 
@@ -73,14 +74,45 @@ function game(){
     console.log("Let's play some Rock, Paper, Scissors!");
 
     let score = 0;
+    let draws = 0;
+    
     for (let i = 0; i < 5; i++) {
+        let draw=false;
+        let playerWins=false;
         console.log(`Round number ${i+1}.`);
         let playerEntry = window.prompt(`What's your choice?`);
+        // console.log(playerEntry);
         let playerSelection = playerEntry.toLowerCase();
         let computerSelection = getComputerChoice();
-        console.log(computerSelection);
-        console.log(playRound (playerSelection, computerSelection ));
-     }
+        // console.log(computerSelection);
+        let result=playRound (playerSelection, computerSelection );
+        
+        if(result==="draw"){
+            draw=true;
+        }
+        else if (result==="playerWins"){
+            playerWins=true;
+        }
+        else if (result==="playerLose"){
+            playerWins=false;
+        }
 
+        if(draw){
+            draws++
+            console.log(`There is a draw! Both choose ${playerSelection}.`);
+        
+        }
+        else {
+             if(playerWins){
+                score++;
+                console.log(`Congratulations, you won! ${playerSelection} beats ${computerSelection}.`);
+             }
+             else{
+                console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+             }
+            }  
+     
+    }
+    console.log(`Puntuacion final: Victorias = ${score} Empates = ${draws} Derrotas = ${5-score}`);
 }
 console.log(game());
