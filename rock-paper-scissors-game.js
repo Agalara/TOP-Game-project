@@ -25,20 +25,38 @@ function getComputerChoice (){
     return computerChoice;
 }
 
-function game (playerSelection, computerSelection){
+let computerSelection = getComputerChoice;
+let playerSelection = playerEntry.toLowerCase();
+
+function playRound (playerSelection, computerSelection ){
     
+    let playerWins = false;
+    let draw = false;
 
-}
-
-function whoWins (playerSelection, computerSelection ){
     if(playerSelection===computerSelection){
-        empate;
+        draw = true;
     }
-    else if ((playerSelection==='rock')&&(computerSelection==='paper')){
-
+    else{
+        switch(playerSelection){
+            case "rock":
+                if(computerSelection==="scissors"){
+                        playerWins = true;
+                }
+                break;
+    
+            case "paper":
+                if(computerSelection==="rock"){
+                        playerWins = true;
+                }
+                break;
+    
+            case "scissors":
+                if(computerSelection==="paper"){
+                        playerWins = true;
+                }
+                break;
+        }
     }
-
-
 }
 
 console.log("Hello World");
