@@ -77,8 +77,8 @@ function game(){
     let draws = 0;
     
     for (let i = 0; i < 5; i++) {
-        let draw=false;
-        let playerWins=false;
+        let draw=false; //I let draw andor playerWins out of the loop. That caused that
+        let playerWins=false;//after a draw, the following encounters where always a draw too
         console.log(`Round number ${i+1}.`);
         let playerEntry = window.prompt(`What's your choice?`);
         // console.log(playerEntry);
@@ -116,3 +116,6 @@ function game(){
     console.log(`Puntuacion final: Victorias = ${score} Empates = ${draws} Derrotas = ${5-score}`);
 }
 console.log(game());
+const selection=document.querySelectorAll('.playerOpt');
+selection.forEach()
+window.addEventListener('click',)
