@@ -24,6 +24,7 @@ function getComputerChoice (){
         
         // default:
     }
+    console.log(computerChoice);
     return computerChoice;
 }
 
@@ -115,7 +116,45 @@ function game(){
     }
     console.log(`Puntuacion final: Victorias = ${score} Empates = ${draws} Derrotas = ${5-score}`);
 }
-console.log(game());
-const selection=document.querySelectorAll('.playerOpt');
-selection.forEach()
-window.addEventListener('click',)
+
+function resultTracker(result){
+    
+    
+    let win = 0;
+    let draws = 0;
+    let lose = 0;
+
+    if(result==="draw"){
+        draws+=1;
+    }
+    else if (result==="playerWins"){
+        win+=1;
+    }
+    else{
+        lose+=1;
+    }
+return{win,draws,lose};
+}
+
+function dispayScore(){
+
+
+
+}
+
+
+
+const buttons=document.querySelectorAll('button');
+buttons.forEach((button) =>{
+    button.addEventListener('click',() =>{  
+
+        let result=playRound(button.className,getComputerChoice());
+        let score=resultTracker(result);
+        
+
+        
+        
+        alert(result);
+        console.log(button);
+    });
+});
