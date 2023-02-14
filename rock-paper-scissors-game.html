@@ -4,16 +4,22 @@
   <meta charset="UTF-8">
   <title>Page Title</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+
 </head>
 <body>
-
+  <div class="font-effect-neon">Rock ,Paper, Scissors: The Game!!!</div>
   <div class="container">
-    <div data-key="rock" class="playerOpt"></div>
-    <div data-key="paper" class="playerOpt"></div>
-    <div data-key="scissors" class="playerOpt"></div>
+    <button class="rock">Rock</button>
+    <button class="paper">Paper</button>
+    <button class="scissors">Scissors</button>
   </div>
-  <div class="score"></div>
-
+  <div class="score">
+    <div class="win"></div>
+    <div class="draw"></div>
+    <div class="lose"></div>
+  </div>
 
   <script src="rock-paper-scissors-game.js"></script>
 </body>
