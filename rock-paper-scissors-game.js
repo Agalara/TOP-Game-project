@@ -70,91 +70,66 @@ function playRound (playerSelection, computerSelection ){
     }
 }
 
-function game(){
-
-    console.log("Let's play some Rock, Paper, Scissors!");
-
-    let score = 0;
-    let draws = 0;
+// function resultTracker(result,win,draws,lose){
     
-    for (let i = 0; i < 5; i++) {
-        let draw=false; //I let draw andor playerWins out of the loop. That caused that
-        let playerWins=false;//after a draw, the following encounters where always a draw too
-        console.log(`Round number ${i+1}.`);
-        let playerEntry = window.prompt(`What's your choice?`);
-        // console.log(playerEntry);
-        let playerSelection = playerEntry.toLowerCase();
-        let computerSelection = getComputerChoice();
-        // console.log(computerSelection);
-        let result=playRound (playerSelection, computerSelection );
-        
-        if(result==="draw"){
-            draw=true;
-        }
-        else if (result==="playerWins"){
-            playerWins=true;
-        }
-        else if (result==="playerLose"){
-            playerWins=false;
-        }
+//     if(result==="draw"){
+//         draws+=1;
+//     }
+//     else if (result==="playerWins"){
+//         win+=1;
+//     }
+//     else{
+//         lose+=1;
+//     }
+// return{win,draws,lose};
+// }
 
-        if(draw){
-            draws++
-            console.log(`There is a draw! Both choose ${playerSelection}.`);
-        
-        }
-        else {
-             if(playerWins){
-                score++;
-                console.log(`Congratulations, you won! ${playerSelection} beats ${computerSelection}.`);
-             }
-             else{
-                console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
-             }
-            }  
-     
+function displayScore(win,draw,lose){
+
+    if(win > 0){
+        const victory=document.querySelector('.win');
+        victory.textContent=`Victories: ${win}`;
     }
-    console.log(`Puntuacion final: Victorias = ${score} Empates = ${draws} Derrotas = ${5-score}`);
-}
 
-function resultTracker(result){
-    
-    
-    let win = 0;
-    let draws = 0;
-    let lose = 0;
-
-    if(result==="draw"){
-        draws+=1;
+    if(draw > 0){
+        const victory=document.querySelector('.draw');
+        victory.textContent=`Draws: ${draw}`;
     }
-    else if (result==="playerWins"){
-        win+=1;
+
+    if(lose > 0){
+        const victory=document.querySelector('.lose');
+        victory.textContent=`Lose: ${lose}`;
     }
-    else{
-        lose+=1;
-    }
-return{win,draws,lose};
-}
-
-function dispayScore(){
-
-
 
 }
 
-
+let result='';
+let win=0;
+let lose=0;
+let draw=0;
+const maxTrys=5;
 
 const buttons=document.querySelectorAll('button');
-buttons.forEach((button) =>{
-    button.addEventListener('click',() =>{  
 
-        let result=playRound(button.className,getComputerChoice());
-        let score=resultTracker(result);
-        
+ 
+    buttons.forEach((button) =>{
+        button.addEventListener('click',() =>{  
 
+        result=playRound(button.className,getComputerChoice());
         
+        if(result==="draw"){
+            draw+=1;
+        }
+        else if (result==="playerWins"){
+            win+=1;
+        }
+        else if (result==="playerLose"){
+            lose+=1;
+        }
+
+        // {win,draw,lose}=resultTracker(result);
+        displayScore(win,draw,lose);
         
-        alert(result);
-        console.log(button);
+        });
     });
-});
+
