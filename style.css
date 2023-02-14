@@ -8,7 +8,7 @@ body{
     justify-content:space-evenly;
     align-items:center;
     border: solid 5px;
-    border-color: red;
+    /* border-color: red; */
     margin:0px;
     background-color: #0c1133;
     font-family: 'Roboto', sans-serif;
@@ -43,8 +43,8 @@ button{
 
 .container{
     display: flex;
-    border: solid 5px;
-    border-color: burlywood;
+    /* border: solid 5px; */
+    /* border-color: burlywood; */
     justify-content:center;
     margin:30px;
 }
@@ -56,7 +56,6 @@ button{
     color: #fff;
     font-weight: 800;
     font-size: 26px;
-    border: solid 5px;
-    border-color: green;
-
+    /* border: solid 5px; */
+    /* border-color: green; */
 }
