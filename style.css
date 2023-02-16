@@ -39,6 +39,9 @@ button{
     background-color: rgb(138, 249, 255);
     padding: 30px;
     margin:50px;
+    font-family: 'Roboto';
+    color:rgb(0, 0, 0);
+    text-shadow: #fff;
 }
 
 .container{
@@ -58,4 +61,12 @@ button{
     font-size: 26px;
     /* border: solid 5px; */
     /* border-color: green; */
+}
+
+.endGameTextContainer{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    text-shadow: 0 0 0.05em #fff, 0 0 0.2em #ffee05, 0 0 0.3em #fedd05;
+    margin: 25px;
+    
 }
