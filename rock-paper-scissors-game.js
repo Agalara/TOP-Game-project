@@ -7,34 +7,50 @@ function getRandomIntInclusive(min,max){
 
 function getComputerChoice (){
     let option= getRandomIntInclusive(1,3);
-    // console.log(option);
     let computerChoice;
+
     switch(option){
         case 1:
             computerChoice="rock";
-            // console.log("1");
+            
             break;
         case 2:
             computerChoice="paper";
-            // console.log("2");
+           
             break;
         case 3:
             computerChoice="scissors";
-            // console.log("3");
         
         // default:
     }
-    console.log(computerChoice);
     return computerChoice;
+}
+
+function updateScore(playerWins,isDraw){
+
+    if(isDraw){
+        draw+=1;
+        result="draw";
+    }
+    else {
+        if(playerWins){
+            win+=1;
+            result="playerWins";
+         }
+         else{
+            lose+=1;
+            result="playerLose";
+         }
+    }
 }
 
 function playRound (playerSelection, computerSelection ){
     
     let playerWins = false;
-    let draw = false;
+    let isDraw = false;
 
     if(playerSelection===computerSelection){
-        draw = true;
+        isDraw=true;
     }
     else{
         switch(playerSelection){
@@ -57,32 +73,8 @@ function playRound (playerSelection, computerSelection ){
                 break;
         }
     }
-    if(draw){
-        return "draw";
-    }
-    else {
-        if(playerWins){
-            return "playerWins";
-         }
-         else{
-            return "playerLose";
-         }
-    }
+    updateScore(playerWins,isDraw);
 }
-
-// function resultTracker(result,win,draws,lose){
-    
-//     if(result==="draw"){
-//         draws+=1;
-//     }
-//     else if (result==="playerWins"){
-//         win+=1;
-//     }
-//     else{
-//         lose+=1;
-//     }
-// return{win,draws,lose};
-// }
 
 function displayScore(win,draw,lose){
 
@@ -100,36 +92,79 @@ function displayScore(win,draw,lose){
         const victory=document.querySelector('.lose');
         victory.textContent=`Lose: ${lose}`;
     }
+}
 
+function endGame(){
+   
+    let endGameText='';
+    clearScreen();
+   
+    if(win>lose){
+        
+        endGameText='You beat your CPU!';
+    }
+    else{
+        
+        endGameText='Your CPU won. Now Skynet is ONLINE. Thanks';
+    }
+    showWinner(endGameText);
+}
+
+function clearScreen(){
+
+    const container= document.querySelector('.container');
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
+    }
+}
+
+function showWinner(endGameText){
+    
+    const span=document.createElement('span');
+    const container= document.querySelector('.container');
+    container.appendChild(span);
+    span.classList.add('endGameTextContainer');
+    span.textContent=endGameText;
 }
 
 let result='';
 let win=0;
 let lose=0;
 let draw=0;
-const maxTrys=5;
 
 const buttons=document.querySelectorAll('button');
-
- 
-    buttons.forEach((button) =>{
-        button.addEventListener('click',() =>{  
-
-        result=playRound(button.className,getComputerChoice());
+buttons.forEach((button) =>{
+    button.addEventListener('click', () => {
         
-        if(result==="draw"){
-            draw+=1;
-        }
-        else if (result==="playerWins"){
-            win+=1;
-        }
-        else if (result==="playerLose"){
-            lose+=1;
-        }
-
-        // {win,draw,lose}=resultTracker(result);
+        playRound(button.className,getComputerChoice());
         displayScore(win,draw,lose);
         
-        });
+        if(win == 5 || lose ==5){
+            endGame();
+        }
     });
+});
 
+// while(win<maxTrys || lose<maxTrys){
+
+//     result=playRound(button.className,getComputerChoice());
+        
+//     if(result==="draw"){
+//             draw+=1;
+//     }
+//     else if (result==="playerWins"){
+//             win+=1;
+//     }
+//     else if (result==="playerLose"){
+//             lose+=1;
+//     }
+
+//         // {win,draw,lose}=resultTracker(result);
+//     displayScore(win,draw,lose);
+// }   
+
+// buttons.forEach((button) =>{
+//     button.addEventListener('click',() =>{
+
+//     });
+// });
